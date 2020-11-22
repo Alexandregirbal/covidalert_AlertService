@@ -14,3 +14,8 @@ spring :
     hibernate :
       ddl-auto : none
       show-sql : true
+  email :
+    username : covidalert.iwa.noreply@gmail.com
+    password : azerty1?
+    host : smtp.gmail.com
+    port : 587
