@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import polytech.covidalert.exception.FormNotCompletedException;
 import polytech.covidalert.exception.ResourceAlreadyExistsException;
-import polytech.covidalert.models.SendWarning;
-import polytech.covidalert.models.SendWarningRepository;
-import polytech.covidalert.models.Warning;
-import polytech.covidalert.models.WarningRepository;
+import polytech.covidalert.models.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+//http://localhost:8092/covidalert/api/send-warning"
 @RestController
 @RequestMapping("/covidalert/api/send-warning")
 public class SendWarningController {
     @Autowired
     private SendWarningRepository sendWarningRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
     public List<SendWarning> list() {
@@ -29,12 +29,18 @@ public class SendWarningController {
     }
 
     @GetMapping
-    @RequestMapping("{id}")
-    public SendWarning get(@PathVariable Long id) {
-        if (! sendWarningRepository.findById(id).isPresent()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SendWarning with ID " +id+ " not found.");
+    @RequestMapping("{userEmail}")
+    public boolean get(@PathVariable String userEmail) {
+        System.out.println(userEmail);
+
+        User userInfected = userRepository.findByEmail(userEmail);
+        SendWarning sendWarning = sendWarningRepository.findByUserIdInfected(userInfected.getUser_id());
+        if ( sendWarning == null){
+            return false;
+            //we should verify that the warning is in a certain period of time (7 days for example)
+        } else {
+            return true;
         }
-        return sendWarningRepository.getOne(id);
     }
 
     @PostMapping

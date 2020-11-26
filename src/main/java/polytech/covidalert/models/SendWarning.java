@@ -6,13 +6,31 @@ import java.util.Date;
 @Entity(name="send_warning")
 @Access(AccessType.FIELD)
 public class SendWarning {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private long send_warning_id;
-    private long user_id_infected;
-    private long user_id_contacted;
+    private long userIdInfected;
+    private long userIdContacted;
     private long warning_id;
     private Date warning_date;
+
+
+    public long getUserIdInfected() {
+        return userIdInfected;
+    }
+
+    public void setUserIdInfected(long userIdInfected) {
+        this.userIdInfected = userIdInfected;
+    }
+
+    public long getUserIdContacted() {
+        return userIdContacted;
+    }
+
+    public void setUserIdContacted(long userIdContacted) {
+        this.userIdContacted = userIdContacted;
+    }
 
     public long getSend_warning_id() {
         return send_warning_id;
@@ -20,22 +38,6 @@ public class SendWarning {
 
     public void setSend_warning_id(long send_warning_id) {
         this.send_warning_id = send_warning_id;
-    }
-
-    public long getUser_id_infected() {
-        return user_id_infected;
-    }
-
-    public void setUser_id_infected(long user_id_infected) {
-        this.user_id_infected = user_id_infected;
-    }
-
-    public long getUser_id_contacted() {
-        return user_id_contacted;
-    }
-
-    public void setUser_id_contacted(long user_id_contacted) {
-        this.user_id_contacted = user_id_contacted;
     }
 
     public long getWarning_id() {
