@@ -15,6 +15,7 @@ import java.util.Optional;
 
 //http://localhost:8092/covidalert/api/send-warning"
 @RestController
+@CrossOrigin
 @RequestMapping("/covidalert/api/send-warning")
 public class SendWarningController {
     @Autowired
@@ -22,22 +23,19 @@ public class SendWarningController {
 
     @Autowired
     private UserRepository userRepository;
-
+ /*
     @GetMapping
     public List<SendWarning> list() {
         return sendWarningRepository.findAll();
     }
-
+*/
     @GetMapping
-    @RequestMapping("{userEmail}")
-    public boolean get(@PathVariable String userEmail) {
+    public boolean get(@RequestParam String userEmail) {
         System.out.println(userEmail);
-
         User userInfected = userRepository.findByEmail(userEmail);
-        SendWarning sendWarning = sendWarningRepository.findByUserIdInfected(userInfected.getUser_id());
+        SendWarning sendWarning = sendWarningRepository.findByuseridinfected(userInfected.getUser_id());
         if ( sendWarning == null){
             return false;
-            //we should verify that the warning is in a certain period of time (7 days for example)
         } else {
             return true;
         }

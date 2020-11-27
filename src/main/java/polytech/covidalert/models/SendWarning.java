@@ -10,26 +10,26 @@ public class SendWarning {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private long send_warning_id;
-    private long userIdInfected;
-    private long userIdContacted;
+    private long useridinfected;
+    private long useridcontacted;
     private long warning_id;
     private Date warning_date;
 
 
     public long getUserIdInfected() {
-        return userIdInfected;
+        return useridinfected;
     }
 
     public void setUserIdInfected(long userIdInfected) {
-        this.userIdInfected = userIdInfected;
+        this.useridinfected = userIdInfected;
     }
 
     public long getUserIdContacted() {
-        return userIdContacted;
+        return useridcontacted;
     }
 
     public void setUserIdContacted(long userIdContacted) {
-        this.userIdContacted = userIdContacted;
+        this.useridcontacted = userIdContacted;
     }
 
     public long getSend_warning_id() {
